@@ -1,6 +1,10 @@
 const { connect } = require('./config/database');
 const app = require('./server');
 
+require('dotenv').config();
+
+const port = process.env.PORT || 8080;
+
 connect();
 // eslint-disable-next-line no-console
-app.listen(5050, () => console.log('Running on Port 5050'));
+app.listen(port, () => console.log(`Running on Port ${port}`));

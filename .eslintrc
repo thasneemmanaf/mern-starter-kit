@@ -1,48 +1,42 @@
 {
-	"env": {
-		"commonjs": true,
-		"browser": true,
-		"es2020": true,
-		"es6": true,
-		"node": true
-	},
-	"extends": ["airbnb", "prettier", "plugin:node/recommended"],
-	"plugins": ["react", "prettier", "react-hooks"],
-	"globals": {
-		"Atomics": "readonly",
-		"SharedArrayBuffer": "readonly"
-	},
-	"parserOptions": {
-		"ecmaFeatures": {
-			"jsx": true
-		},
-		"ecmaVersion": 2018,
-		"sourceType": "module"
-	},
-	"rules": {
-		"prettier/prettier": [
-			"error",
-			{
-				"endOfLine": "auto"
-			}
-		],
-		"react/prop-types": [0],
-		"react/jsx-props-no-spreading": [0],
-		"no-underscore-dangle": 0,
-		"import/no-extraneous-dependencies": [
-			"error",
-			{
-				"devDependencies": true
-			}
-		],
-		"react/jsx-filename-extension": [
-			1,
-			{
-				"extensions": [".js", ".jsx"]
-			}
-		],
-		"react/destructuring-assignment": [0],
-		"react-hooks/rules-of-hooks": "error",
-		"react-hooks/exhaustive-deps": "warn"
-	}
+  "env": {
+    "commonjs": true,
+    "es2020": true,
+    "node": true,
+    "mocha": true
+  },
+  "extends": ["prettier", "airbnb-base"],
+  "plugins": ["prettier"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly",
+    "logger": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "linebreak-style": 0,
+    "trailing-comma": 0,
+    "comma-dangle": 0,
+    "no-underscore-dangle": 0,
+    "no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "should|expect"
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ]
+  }
 }
