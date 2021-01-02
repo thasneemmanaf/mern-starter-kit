@@ -1,26 +1,31 @@
-const express = require('express');
-const cors = require('cors');
+import express from 'express';
+import dotenv from 'dotenv';
+import connectDB from './config/database.js';
 
-const pino = require('pino');
-const expressLogger = require('express-pino-logger');
+import { notFound, errorHandler } from './middlewares/errorMiddleware.js';
+
+dotenv.config();
+
+connectDB();
 
 const app = express();
-
-const logger = pino({ level: process.env.LOG_LEVEL || 'info' });
-global.logger = logger;
-
-if (['development', 'production'].includes(process.env.NODE_ENV)) {
-  app.use(expressLogger({ logger }));
-}
-
 app.use(express.json());
-app.use(cors());
 
 app.get('/', (req, res) => {
-  logger.debug('hi there');
   res.json({
     message: 'it works'
   });
 });
 
-module.exports = app;
+// Not found Route middleware
+app.use(notFound);
+
+// Global error handler middleware
+app.use(errorHandler);
+
+const PORT = process.env.PORT || 8080;
+
+app.listen(
+  PORT,
+  console.log(`Running in ${process.env.NODE_ENV} mode on port ${PORT}`)
+);

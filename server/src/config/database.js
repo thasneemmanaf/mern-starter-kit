@@ -1,18 +1,20 @@
-const mongoose = require('mongoose');
+/* eslint-disable no-console */
+import mongoose from 'mongoose';
 
-const connect = async () => {
-  const mongoConnectionString = process.env.MONGO_URI;
+export default connectDB = async () => {
+  const opts = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  };
+
   try {
-    const opts = {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    };
-    await mongoose.connect(mongoConnectionString, opts);
-    console.log('Successfully Connected to Database');
-    logger.debug({ mongoConnectionString });
+    const connectionVar = await mongoose.connect(process.env.MONGO_URI, opts);
+
+    console.log(
+      `Successfully connected to DB: ${connectionVar.connection.host}`
+    );
   } catch (err) {
-    console.log('Unable to establish connection to Database');
-    logger.error(`Fail to connect with database ${mongoConnectionString}`);
+    console.log(`Unable to establish connection to Database: ${err.message}`);
+    process.exit(1);
   }
 };
-module.exports = { connect };

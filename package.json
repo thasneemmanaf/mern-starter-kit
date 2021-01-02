@@ -10,7 +10,8 @@
     "lint-client": "cd client && npm run lint",
     "lint-server": "cd server && npm run lint",
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Thasneem Manaf",
   "license": "MIT",
